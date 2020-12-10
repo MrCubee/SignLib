@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>fr.mrcubee.minecraft.library</groupId>
+    <artifactId>sign</artifactId>
+    <version>1.0</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <name>SignLib</name>
+    <description>Use sign interface.</description>
+
+    <organization>
+        <name>ArkadGames</name>
+        <url>https://github.com/ArkadGamesNetwork</url>
+    </organization>
+
+    <distributionManagement>
+        <repository>
+            <id>arkadgames</id>
+            <url>http://nexus.arkadgames.net/repository/minecraft/</url>
+            <uniqueVersion>false</uniqueVersion>
+        </repository>
+    </distributionManagement>
+
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/ArkadGamesNetwork/SignLib/issues</url>
+    </issueManagement>
+
+    <repositories>
+        <repository>
+            <id>arkadgames</id>
+            <url>http://nexus.arkadgames.net/repository/minecraft/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.8.8-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>fr.mrcubee.minecraft.library</groupId>
+            <artifactId>packets</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <defaultGoal>clean install</defaultGoal>
+        <sourceDirectory>src</sourceDirectory>
+        <finalName>${project.name}-noShade</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                    <shadedArtifactAttached>true</shadedArtifactAttached>
+                    <finalName>${project.name}</finalName>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
