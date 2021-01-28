@@ -7,6 +7,16 @@
     <groupId>fr.mrcubee.minecraft.library</groupId>
     <artifactId>sign</artifactId>
     <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <developers>
+        <developer>
+            <id>mrcubee</id>
+            <name>MrCubee</name>
+            <email>contact@mrcubee.fr</email>
+            <url>https://github.com/MrCubee</url>
+        </developer>
+    </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,27 +26,27 @@
     <description>Use sign interface.</description>
 
     <organization>
-        <name>ArkadGames</name>
-        <url>https://github.com/ArkadGamesNetwork</url>
+        <name>MrCubee</name>
+        <url>https://github.com/MrCubee</url>
     </organization>
 
     <distributionManagement>
         <repository>
-            <id>arkadgames</id>
-            <url>http://nexus.arkadgames.net/repository/minecraft/</url>
+            <id>mrcubee-public</id>
+            <url>http://nexus.mrcubee.net/repository/minecraft/</url>
             <uniqueVersion>false</uniqueVersion>
         </repository>
     </distributionManagement>
 
     <issueManagement>
         <system>github</system>
-        <url>https://github.com/ArkadGamesNetwork/SignLib/issues</url>
+        <url>https://github.com/MrCubee/SignLib/issues</url>
     </issueManagement>
 
     <repositories>
         <repository>
-            <id>arkadgames</id>
-            <url>http://nexus.arkadgames.net/repository/minecraft/</url>
+            <id>mrcubee-public</id>
+            <url>http://nexus.mrcubee.net/repository/minecraft/</url>
         </repository>
     </repositories>
 
@@ -51,14 +61,14 @@
             <groupId>fr.mrcubee.minecraft.library</groupId>
             <artifactId>packets</artifactId>
             <version>1.0</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
     <build>
         <defaultGoal>clean install</defaultGoal>
         <sourceDirectory>src</sourceDirectory>
-        <finalName>${project.name}-noShade</finalName>
+        <finalName>${pom.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -82,7 +92,7 @@
                 </executions>
                 <configuration>
                     <createDependencyReducedPom>false</createDependencyReducedPom>
-                    <shadedArtifactAttached>true</shadedArtifactAttached>
+                    <shadedArtifactAttached>false</shadedArtifactAttached>
                     <finalName>${project.name}</finalName>
                 </configuration>
             </plugin>
