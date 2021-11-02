@@ -16,13 +16,13 @@ import java.util.Map;
 import java.util.WeakHashMap;
 import java.util.function.Consumer;
 
-public class SignGUi implements Listener {
+public class SignGUI implements Listener {
 
     private final Plugin plugin;
     private final GenericListenerManager manager;
     private final Map<Player, Consumer<String[]>> consumerMap;
 
-    protected SignGUi(Plugin plugin) {
+    protected SignGUI(Plugin plugin) {
         this.plugin = plugin;
         this.consumerMap = new WeakHashMap<Player, Consumer<String[]>>();
         this.manager = GenericListenerManager.create("SignGui");
@@ -52,13 +52,13 @@ public class SignGUi implements Listener {
         String[] lines;
 
         if (event.getListenerManager() != this.manager || event.getPacket().getPacket() != Packets.PLAY_IN_UPDATE_SIGN
-        || !this.manager.containPlayer(event.getSender()))
+        || !this.manager.containPlayer(event.getReceiver()))
             return;
         event.setCancelled(true);
-        this.manager.removePlayer(event.getSender());
+        this.manager.removePlayer(event.getReceiver());
         updateSign = (GenericPacketPlayInUpdateSign) event.getPacket();
-        removeSign(event.getSender(), updateSign.getLocation());
-        consumer = this.consumerMap.remove(event.getSender());
+        removeSign(event.getReceiver(), updateSign.getLocation());
+        consumer = this.consumerMap.remove(event.getReceiver());
         if (consumer == null)
             return;
         lines = updateSign.getLines();
@@ -105,9 +105,9 @@ public class SignGUi implements Listener {
         return true;
     }
 
-    public static SignGUi create(Plugin plugin) {
+    public static SignGUI create(Plugin plugin) {
         if (plugin == null)
             return null;
-        return new SignGUi(plugin);
+        return new SignGUI(plugin);
     }
 }
